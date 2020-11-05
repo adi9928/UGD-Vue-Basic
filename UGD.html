@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGD MINI GAMES</title>
+    <!-- vue js -->
+    <script src="vue.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body><body>
+    <div id="app">
+        <h1>
+            [!] Mini Game [!]
+        </h1>
+        <h4> Angka akan digenerate secara acak dari 1-10 setiap kali bermain </h4>
+        <h4> {{jumlahHati(nyawaAwal-counter+1)}}  </h4>
+        
+        <div class="wadah">
+            <p>
+                <span v-if="counter==1 && condition=='null'">
+                    <button @click="generate" class="buttonganteng"> Start </button>
+                </span>
+                <span v-else-if="condition=='dahmulai'">
+                    
+                    <span class="bignumber"> ? </span>
+                    {{ komen }}
+                    <br>
+                    Tebak angka disebelah :
+                    <input type="number" v-model="inputAngka" :disabled="isdisable">  </input>
+                    <br>
+                    <span v-if="isdisable==false">
+                        <button @click="guess" class="buttonganteng"> 
+                            Submit
+                        </button>
+                    </span>
+                    <span v-else>
+                        <button @click="tebaklagi" class="buttonganteng"> 
+                            Tebak Lagi
+                        </button>
+                    </span>
+                    
+                </span>
+                <span v-else>
+                    <span class="bignumber"> {{ angka }} </span>
+                    {{komen}}
+                    <br>
+                    <button @click="reset" class="buttonganteng"> 
+                        Mulai Lagi
+                    </button>
+                    <br>
+                </span>
+            </p>   
+                  
+        </div>
+         
+        <h6>
+            {{ profil.nama }} | {{ profil.npm }} | {{ profil.kelas }}
+        </h6>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            profil:{
+                nama: 'Adi',
+                npm: 180709928,
+                kelas: 'Kelas PAW E',
+            },
+            nyawaAwal: 3,
+            counter: 1,
+            inputAngka: 0,
+            angka: '?',
+            condition: 'null',
+            komen: '',
+            isdisable: false,
+        },
+        methods:{
+            jumlahHati(hati){
+                return `Kesempatan anda : ${hati}`;
+            },
+            generate(){
+                var number = Math.floor(Math.random()*10)+1;
+                console.log(number);
+                this.angka = number;
+                this.condition = 'dahmulai';
+            },
+            guess(){
+                if(this.inputAngka==this.angka){
+                    this.condition = 'menang';
+                    this.komen = 'SELAMAT ANDA MENEBAK ANGKA YANG BENAR';
+                }
+                else{
+                    this.counter++;
+                    if(this.nyawaAwal-this.counter+1==0){
+                        this.condition = 'kalah';
+                        this.komen = 'KESEMPATAN HABIS, ANDA KALAH';
+                    }else{
+                        this.condition = 'dahmulai';
+                        this.komen='TEBAKAN ANDA SALAH';
+                        this.isdisable=true;
+                    }
+                }
+            },
+            reset(){
+                this.condition='null';
+                this.counter=1;
+                this.angka='?';
+                this.inputAngka=0;
+                this.komen= '';
+                this.isdisable = false;
+            },
+            tebaklagi(){
+                this.isdisable=false;
+                this.komen='';
+            }
+        },
+    });
+</script>
+
+</html>

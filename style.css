@@ -1,0 +1,48 @@
+body{
+    font-family: Verdana;
+    background: #F2B8DF;
+    margin: 50dp;
+}
+
+h1{
+    text-align: center;
+    color: darkred;
+}
+
+h4{
+    text-align: center;
+}
+
+h6{
+    text-align: right;
+    margin-right: 2%;
+}
+
+.wadah{
+    position: relative;
+    display: flex;
+    background-color: deepskyblue;
+    align-items: center;
+    width: 26%;
+    height: 20%;
+    margin-left: 37%;
+    margin-right: 37%;
+    border-radius: 20px;
+}
+
+.bignumber{
+    float: left;
+    font-size: 100px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+.buttonganteng{
+    color: dimgray;
+    background-color: gold;
+    align-items: center;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    margin-left: 160px;
+}
